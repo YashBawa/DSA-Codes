@@ -7,7 +7,6 @@ int is_prime[1000001];
 void seive () 
 {
     int maxn = 1000000;
-    
     for (int i=2;i<=maxn;i++)
     {
         is_prime[0]=is_prime[1]=0;
