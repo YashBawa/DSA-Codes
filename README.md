@@ -7,3 +7,5 @@ Begning portion
 
 Day -1 --> Primarity Test --> (CodeChef) --> PBR01 
 Day -2 --> Algoritham --> Sieve of Eratosthenes --> for finding the prime numbers
+Day -3 --> Prime Factorisation --> basic algoritham --> Time Compexity --> Osqrt(n)
+
