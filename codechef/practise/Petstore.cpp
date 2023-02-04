@@ -1,3 +1,7 @@
+// codechef -- Petstore problem 
+// problem code -- PETSTORE
+//Difficulty Rating:1126
+
 #include <iostream>
 // Basic approach 
 // sort the given array and the number should atleast have its one duplicate 
