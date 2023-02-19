@@ -174,7 +174,7 @@
 // int main() {
 //     int n;
 //     cin >> n;
-//     //making array of the prices 
+//     //making array of the rates 
 // 	int rates[n];
 // 	// taking input using loop 
 //     for (int i=0; i<n; i++) {
@@ -200,27 +200,27 @@
 #include <limits.h>
 using namespace std;
 
-// functions checks if the input is possible for the performing the operation 
-int checkIteration(int pref_lengths[], int n, int remainingLength) {
+// the function checks for if the operation can be performed over it or not 
+int ch_itr(int preff_len[], int n, int rem_length) {
     for (int i=0; i<n; i++) {
-        if (remainingLength >= pref_lengths[i]) {
+        if (rem_length >= preff_len[i]) {
             return 1;
         }
     }
     return 0;
 }
 
-// function is used to calc the max revenue in accordance with the prefered length
-int maxRevenue(int pref_lengths[], int pref_lengthsLength, int prices[], int n, int revenue) {
+// function is used to calc the max rev in accordance with the prefered length
+int max_rev(int preff_len[], int preferedlength, int rates[], int n, int rev) {
     if (n<0) {
         return -1;
     }
-    if (checkIteration pref_lengths, pref_lengthsLength, n) == 0) {
-        return revenue - n;
+    if (ch_itr (preff_len, preferedlength, n) == 0) {
+        return rev - n;
     }
     int q = -1;
-    for (int i=0; i pref_lengthsLength; i++) {
-        q = max(q, maxRevenue pref_lengths, pref_lengthsLength, prices, n pref_lengths[i], revenue+prices pref_lengths[i]-1]));
+    for (int i=0; i < preferedlength; i++) {
+        q = max(q, max_rev preff_len, preferedlength, rates, n preff_len[i], rev+rates preff_len[i]-1]));
     }
     return q;
 }
@@ -229,21 +229,80 @@ int main() {
     // length of the rods 
     int n;
     cin >> n;
-    int prices[n];
+    int rates[n];
 	// the array contains the length of the various rods 
     for (int i=0; i<n; i++) {
-        cin >> prices[i];
+        cin >> rates[i];
     }
 	// num is the preffered length of the rod cutting 
     int num;
     cin >> num;
-    int pref_lengths[num];
+    int preff_len[num];
     for (int i=0; i<num; i++) {
-        cin >> pref_lengths[i];
+        cin >> preff_len[i];
     }
     
     // computing the output
-    cout << maxRevenue pref_lengths, num, prices, n, 0);
+    cout << max_rev preff_len, num, rates, n, 0);
+    cout << "Test";
+
+    return 0;
+}
+
+
+
+
+
+// #######################
+////////////////////////////
+#include <iostream>
+#include <limits.h>
+using namespace std;
+
+// function to check if any of the length of the preference is possible to cut
+int ch_itr(int pref[], int n, int rem_len) {
+    for (int i=0; i<n; i++) {
+        if (rem_len >= pref[i]) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+// function to find the max profit using the given function 
+int max_rev(int pref[], int preferedlen, int rates[], int n, int rev) {
+    if (n<0) {
+        return -1;
+    }
+    if (ch_itr(pref, preferedlen, n) == 0) {
+        return rev - n;
+    }
+    int q = -1;
+    for (int i=0; i<preferedlen; i++) {
+        q = max(q, max_rev(pref, preferedlen, rates, n-pref[i], rev+rates[pref[i]-1]));
+    }
+    return q;
+}
+
+int main() {
+    // length of n taken input for storing prices in the array 
+    int n;
+    cin >> n;
+    int rates[n];
+    for (int i=0; i<n; i++) {
+        cin >> rates[i];
+    }
+    // taking num input which will contain num <-- preference number
+    int num;
+    cin >> num;
+    // array of the num will be created 
+    int pref[num];
+    for (int i=0; i<num; i++) {
+        cin >> pref[i];
+    }
+    
+    // calling the function and printting the max rev 
+    cout << max_rev(pref, num, rates, n, 0);
     cout << "Test";
 
     return 0;
