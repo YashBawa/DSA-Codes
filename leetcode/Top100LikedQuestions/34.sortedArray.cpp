@@ -1,5 +1,8 @@
 class Solution {
 public:
+
+// naive approach --linear search O(n)
+// Optimixation -- Binary Search O(log n)
     vector<int> searchRange(vector<int>& nums, int target) {
         // for finding start index
         vector<int> new_array;
