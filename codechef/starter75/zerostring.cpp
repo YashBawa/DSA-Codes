@@ -1,5 +1,4 @@
 // Commented part is the conversion of decimal to binary which is not needed 
-
 #include <iostream>
 using namespace std;
 // // decimal to binary conversion
